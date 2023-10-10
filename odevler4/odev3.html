@@ -1,0 +1,32 @@
+
+<!-- Ekrana bir input ve bir button koy. Butona tıkladığında inputtan aldığı id ile datayı silsin! --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="">ID</label>
+        <input type="text" name="" id="id">
+    </div>
+
+    <div>
+        <button onclick="deleteSupplier()">Delete</button>
+    </div>
+</body>
+<script>
+    function deleteSupplier() {
+        var id = document.getElementById('id').value;
+
+        axios.delete('https://northwind.vercel.app/api/suppliers/' + id)
+            .then(res => {
+                alert('Silme işlemi başarılı!')
+            })
+    }
+</script>
+</html>
