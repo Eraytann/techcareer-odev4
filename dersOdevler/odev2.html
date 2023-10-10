@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- USA ÜLKESİNE TOPLAM SİPARİŞ-->
+
+</body>
+<script>
+
+        fetch("https://northwind.vercel.app/api/orders")
+            .then(res=>res.json())
+            .then(data=>{
+                
+                const usaOrders = [];
+
+                data.forEach(order =>{
+                    if(order.shipAddress.country === "USA"){
+                        usaOrders.push(order);
+                    }
+                });
+
+                console.log("USA ülkesine toplam sipariş:",usaOrders);
+            });
+</script>
+</html>

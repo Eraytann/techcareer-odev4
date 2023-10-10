@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 1996 yılındaki toplam siparişleri console'a yaz-->
+
+</body>
+<script>
+        
+
+axios.get("https://northwind.vercel.app/api/orders")
+  .then(response => {
+    if (response.status !== 200) {
+      throw new Error("HTTP error " + response.status);
+    }
+    return response.data; 
+  })
+  .then(data => {
+
+    const ordersIn1996 = data.filter(order => {
+      const orderDate = new Date(order.orderDate);
+      return orderDate.getFullYear() === 1996;
+    });
+
+    console.log("1996 yılındaki siparişler:", ordersIn1996);
+  })
+  .catch(error => {
+    console.error("Hata oluştu:", error);
+  });
+
+
+</script>
+</html>

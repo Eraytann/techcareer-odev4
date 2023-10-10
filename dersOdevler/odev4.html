@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+ 
+
+</body>
+<script>
+
+axios.get("https://northwind.vercel.app/api/orders")
+  .then(response => {
+    if (response.status !== 200) {
+      throw new Error("HTTP error " + response.status);
+    }
+    return response.data; 
+  })
+  .then(data => {
+
+    const delayedOrders = data.filter(order => {
+      if (order.requiredDate && order.shippedDate) {
+        const requiredDate = new Date(order.requiredDate);
+        const shippedDate = new Date(order.shippedDate);
+        return shippedDate > requiredDate;
+      }
+      return false;
+    });
+
+    console.log("Geciken siparişler:", delayedOrders);
+  })
+  .catch(error => {
+    console.error("Hata oluştu:", error);
+  });
+</script>
+</html>

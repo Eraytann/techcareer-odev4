@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<ul></ul>
+
+</body>
+<script>
+
+    async function getOrders() {
+
+        await fetch("https://northwind.vercel.app/api/orders")
+            .then(res=>res.json())
+            .then(data=>{
+                var orders = data;
+        
+                orders.forEach(element=>{
+                
+                var liElement = document.createElement('li');
+                liElement.innerText = element.customerId
+
+                document.querySelector('ul').appendChild(liElement)
+            });
+        })
+    }
+        getOrders();
+        console.log("customerId", customerId);
+
+</script>
+</html>
